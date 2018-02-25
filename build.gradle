@@ -38,7 +38,7 @@ dependencies {
 bintray {
     user = project.properties.get('bintrayUser') ?: System.getenv('BINTRAY_USER')
     key = project.properties.get('bintrayKey') ?: System.getenv('BINTRAY_KEY')
-    publications = ['mavenBundle']
+    publications = ['mavenOsgiPackage']
     pkg {
         repo = 'maven-public'
         name = 'vertx-bundle'
