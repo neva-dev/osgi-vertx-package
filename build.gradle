@@ -4,8 +4,9 @@ plugins {
     id "com.jfrog.bintray" version "1.7.3"
 }
 
-group 'com.neva.osgi.package'
-version '1.0.0-SNAPSHOT'
+description = "Vert.x OSGi Package"
+group = 'com.neva.osgi.package'
+version = '1.0.0-SNAPSHOT'
 defaultTasks = ['clean', 'build', 'publishToMavenLocal']
 
 repositories {
@@ -43,7 +44,7 @@ bintray {
         name = 'vertx-bundle'
         userOrg = 'neva-dev'
         licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/neva-dev/vertx-bundle.git'
+        vcsUrl = 'https://github.com/neva-dev/osgi-vertx-package.git'
         labels = ['vertx', 'osgi', 'bundle', 'gradle']
         version {
             name = project.version
