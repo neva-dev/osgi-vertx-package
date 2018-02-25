@@ -1,0 +1,17 @@
+pluginManagement {
+    repositories {
+        jcenter()
+        mavenLocal()
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.namespace == 'com.neva.osgi') {
+                useModule('com.neva.gradle:osgi-plugin:1.0.0')
+            } else if (requested.id.id == 'com.jfrog.bintray') {
+                useModule('com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3')
+            }
+        }
+    }
+}
+
+rootProject.name = 'vertx'

@@ -1,0 +1,55 @@
+plugins {
+    id 'com.neva.osgi.package'
+    id 'maven-publish'
+    id "com.jfrog.bintray" version "1.7.3"
+}
+
+group 'com.neva.osgi.package'
+version '1.0.0-SNAPSHOT'
+defaultTasks = ['clean', 'build', 'publishToMavenLocal']
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    osgiCompile group: 'io.vertx', name: 'vertx-core', version: '3.4.2'
+    osgiCompile group: 'io.vertx', name: 'vertx-web', version: '3.4.2'
+    osgiCompile group: 'io.vertx', name: 'vertx-auth-common', version: '3.4.2'
+    osgiCompile group: 'io.vertx', name: 'vertx-hazelcast', version: '3.4.2'
+
+    osgiCompile group: 'com.hazelcast', name: 'hazelcast', version: '3.6.3'
+
+    osgiCompile group: 'io.netty', name: 'netty-common', version: '4.1.15.Final'
+    osgiCompile group: 'io.netty', name: 'netty-buffer', version: '4.1.15.Final'
+    osgiCompile group: 'io.netty', name: 'netty-transport', version: '4.1.15.Final'
+    osgiCompile group: 'io.netty', name: 'netty-handler', version: '4.1.15.Final'
+    osgiCompile group: 'io.netty', name: 'netty-codec', version: '4.1.15.Final'
+    osgiCompile group: 'io.netty', name: 'netty-handler-proxy', version: '4.1.15.Final'
+    osgiCompile group: 'io.netty', name: 'netty-codec-socks', version: '4.1.15.Final'
+    osgiCompile group: 'io.netty', name: 'netty-codec-http', version: '4.1.15.Final'
+    osgiCompile group: 'io.netty', name: 'netty-codec-http2', version: '4.1.15.Final'
+    osgiCompile group: 'io.netty', name: 'netty-codec-dns', version: '4.1.15.Final'
+    osgiCompile group: 'io.netty', name: 'netty-resolver', version: '4.1.15.Final'
+    osgiCompile group: 'io.netty', name: 'netty-resolver-dns', version: '4.1.15.Final'
+}
+
+bintray {
+    user = project.properties.get('bintrayUser') ?: System.getenv('BINTRAY_USER')
+    key = project.properties.get('bintrayKey') ?: System.getenv('BINTRAY_KEY')
+    publications = ['mavenBundle']
+    pkg {
+        repo = 'maven-public'
+        name = 'vertx-bundle'
+        userOrg = 'neva-dev'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/neva-dev/vertx-bundle.git'
+        labels = ['vertx', 'osgi', 'bundle', 'gradle']
+        version {
+            name = project.version
+            desc = "${project.description} ${project.version}"
+            vcsTag = project.version
+        }
+    }
+    publish = true
+}
