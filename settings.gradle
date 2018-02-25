@@ -5,8 +5,8 @@ pluginManagement {
     }
     resolutionStrategy {
         eachPlugin {
-            if (requested.id.namespace == 'com.neva.osgi') {
-                useModule('com.neva.gradle:osgi-plugin:1.0.0')
+            if (requested.id.namespace == 'osgi.toolkit') {
+                useModule('com.neva.osgi.toolkit:gradle-plugin:1.0.0')
             } else if (requested.id.id == 'com.jfrog.bintray') {
                 useModule('com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3')
             }
